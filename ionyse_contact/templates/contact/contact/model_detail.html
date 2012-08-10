@@ -1,0 +1,19 @@
+{% extends 'model_detail.html' %}
+{% load i18n %}
+
+{% block object-items %}
+<p>{% trans "Name" %} : {{ object.first_name }} {{ object.name }}</p>
+<p>{% trans "Email" %} : {{ object.email }}</p>
+{% endblock %}
+
+{% block extra-content %}
+<table class="table">
+  {% for g in object.group.all %}
+  <tr>
+	<th><a href="{% url group-edit g.id %}">{{ g.name }}</a></th>
+    <td>{{ g.email }}</td>
+    <td class='action'><a href="{% url contact-group-delete g.id object.id %}">{% trans "Remove from that group" %}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

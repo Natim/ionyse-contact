@@ -1,0 +1,44 @@
+{% extends "model_list.html" %}
+{% load i18n %}
+
+{% block content-title %}{{ verbose_name }} : {{ object }}{% endblock %}
+
+{% block content %}
+<div id="nav-cols-content">
+  <h2>{{ object }}</h2>
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% block object-items %}
+  {% endblock %}
+
+  {% block object-actions %}
+  {% if url_edit_action or url_delete_action or extra_actions%}
+  <div class="action_list">
+    <p>{% trans "Actions" %} : </p>
+    <ul>
+      {% for action in extra_actions %}
+      <li><a href="{{ action.1 }}">{{ action.0 }}</a></li>
+      {% endfor %}
+      {% if url_edit_action %}
+      <li><a href="{{ url_edit_action }}">{% trans "Edit" %}</a></li>
+      {% endif %}
+      {% if url_delete_action %}
+      <li><a href="{{ url_delete_action }}">{% trans "Delete" %}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div style="clear: both;"></div>
+  {% endif %}
+  {% endblock %}
+
+  {% block extra-content %}{% endblock %}
+
+</div>
+{% endblock %}

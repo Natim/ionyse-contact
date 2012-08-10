@@ -1,0 +1,36 @@
+{% load i18n sekizai_tags %}
+
+<h2>{% block content-title %}{% endblock %}</h2>	
+
+{% addtoblock "js" %}
+{{ form.media }}
+{% endaddtoblock %}
+
+<form enctype="multipart/form-data" action="." method="post">
+  {% csrf_token %}
+
+  {# CUSTOM FORM.AS_P DISPLAY #}
+
+  {% if form.errors and not form.non_field_errors %}
+  <ul class="errorlist"><li>{% trans "Veuillez corriger les erreurs ci-dessous et valider à nouveau le formulaire." %}</li></ul><br/>
+  {% endif %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+  {% if not field.is_hidden %}
+  {{ field.errors }}
+  <p>
+    {# Label with 'required' class #}
+    <label {% if field.field.required %}class="required" {% endif %}for="{{ field.auto_id }}">{{ field.label }}</label>
+    {{ field }}
+    {% if field.help_text %}<span class="helptext">{{ field.help_text|safe }}</span>{% endif %}
+  </p>
+  {% else %}{{ field }}{% endif %}
+  {% endfor %}
+
+  {% block extra_fields %}{% endblock %}
+
+  <div class="buttons">
+    <input type="button" onclick="window.location.href='{% if object %}{{ object.get_absolute_url }}{% else %}{% if cancel_url %}{{ cancel_url }}{% else %}{% url dashboard %}{% endif %}{% endif %}';" value="{% trans "Cancel" %}" />
+    <input id="submit-btn" type="submit" value="{% if object %}{% trans "Save" %}{% else %}{% trans "Create" %}{% endif %}" />
+  </div>
+</form>

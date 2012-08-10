@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Erreur 404" %}{% endblock %}
+
+{% block content-title %}{% trans "Erreur 404" %}{% endblock %}
+
+{% block sub-menu %}{% endblock %}
+{% block content-class %}{% endblock %}
+
+
+{% block content %}
+<div style="padding: 15px;">
+	<p>La page demandée est introuvable !</p>
+	<p><a href="/">Continuer ></a></p>
+</div>
+{% endblock content %}

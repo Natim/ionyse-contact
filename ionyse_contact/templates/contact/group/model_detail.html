@@ -1,0 +1,38 @@
+{% extends 'model_detail.html' %}
+{% load i18n %}
+
+{% block object-items %}
+<p>{% trans "Name" %} : {{ object.name }}</p>
+<p>{% trans "Email" %} : {{ object.email }}</p>
+<p>{% trans "Contacts" %} : {{ object.contacts.count }}</p>
+{% endblock %}
+
+{% block extra-content %}
+
+  <div class="action_list">
+    <p>{% trans "Actions" %} : </p>
+    <ul>
+      <li><a href="{% url contact-batch object.pk %}">{% trans "Add contacts" %}</a></li>
+      <li><a href="{% url contact-sieve object.pk %}">{% trans "Export script sieve" %}</a></li>
+    </ul>
+  </div>
+  <div style="clear: both;"></div>
+
+<table class="table">
+  {% for c in object.contacts.all %}
+  <tr>
+	<th><a href="{% url contact-edit c.pk %}">{{ c }}</a></th>
+    <td class="action"><a href="{% url contact-group-delete object.id c.id %}">{% trans "Remove from that group" %}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+  <div class="action_list">
+    <p>{% trans "Actions" %} : </p>
+    <ul>
+      <li><a href="{% url contact-batch object.pk %}">{% trans "Add contacts" %}</a></li>
+      <li><a href="{% url contact-sieve object.pk %}">{% trans "Export script sieve" %}</a></li>
+    </ul>
+  </div>
+  <div style="clear: both;"></div>
+{% endblock %}

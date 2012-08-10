@@ -1,0 +1,6 @@
+*~
+*.pyc
+docs/.build
+ionyse_contact/apps/
+ionyse_contact/settings.py
+.hg*

@@ -1,0 +1,607 @@
+@mainColor: #1A74B0;
+@background: #555;
+@shadow: @background + #555;
+
+@import "css_fonctions.less";
+
+body {
+    font-family: NunitoLight, Helvetica;
+    overflow: hidden;
+}
+
+h1{ font-size: 2.4em; }
+h2{ font-size: 1.8em; }
+h3{ font-size: 1.6em; }
+h4{ font-size: 1.4em; }
+h5{ font-size: 1.2em; }
+h6{ font-size: 1em;}
+
+h1 .large, h2 .large, h3 .large, h4 .large, h5 .large, h6 .large{
+    font-weight: bold;
+    color: @mainColor;
+}
+
+
+form {
+    margin: 15px 0 30px 0;
+    padding: 14px 18px;
+    .border-radius(24px);
+    input, input[type='file']{
+	.border-radius(5px);
+	border: solid 1px #666;
+	padding: 2px 6px;
+    }
+    p {
+	margin: 6px 0px 10px 0px;
+	label {
+	    width: 180px;
+	    padding: 2px 18px 2px 10px;
+	    display: block;
+	    float: left;
+	    clear: left;
+	    text-align: right;
+	}
+	label.required { font-weight:bold; }
+	input, select, textarea {
+	    display: block;
+	    width: 250px;
+	}
+	textarea {
+	    width: 80%;
+	    height: 60%;
+	    margin: auto;
+	}
+	input[type='checkbox'], input[type='file'],  select{
+	    width: auto;
+	    margin: 0 0 0 210px;
+	}
+	input[type='file']{
+	    border: none;
+	}
+	span.helptext{
+	    font-size: 0.9em;
+	    color: #999;
+	    display: block;
+	    padding: 4px 0px 0px 210px;
+	}
+    }
+    ul.errorlist {
+	li {
+	    color: red;
+	    margin-left: 210px;
+	}
+    }
+    ul.errorlist + p input {
+	border: solid 1px red;
+	background: #FFEEFF;
+    }
+    div.buttons{
+	padding-left: 206px;
+	input {
+	    margin: 4px 4px;
+	}
+    }
+}
+
+form.inline{
+    input {
+	display: inline;
+	width: 80px;
+    }
+    fieldset {
+	margin-top: 2px;
+	legend {
+	    font-weight: bold;
+	}
+    }
+    p.large input{
+	width: auto;
+    }
+}
+
+table.table{
+    margin: auto;
+    tr{
+	border-collapse: collapse;
+	td{
+	    
+	    border: solid 3px #CCC;
+	    padding: 3px 12px;
+	    &.action{
+		display: none;
+		border: none;
+	    }
+	    
+	}
+	td.action{
+	    display: block;
+	    background: #BBB;
+	    .border-radius-right(8px);
+	    color: white;
+	    a {
+		color: white !important;
+	    }
+	    &:hover{
+		background: #888;
+	    }
+	}
+	th{
+	    border: solid 3px #CCC;
+	    padding: 3px 12px;
+		font-weight: bold;
+		text-align: left;
+	}
+    }
+}
+
+div.confirm, div.alert {
+    margin: 70px 10px 10px 10%;
+    li{
+	margin: 4px 10px;
+    }
+}
+
+div.action_list{
+    float: right;
+    padding: 10px 0px 10px 0px;
+    p{
+	float: left;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 3px 8px 0px 0px;
+	font-size: 0.8em;
+	color: #888;
+    }
+    ul{
+	float: left;
+	li{
+	    float: left;
+	    padding: 1px 8px;
+	    margin: 2px 2px;
+	    background: #BBB;
+	    .border-radius(8px);
+	    a{
+		color: white;
+	    }
+	    &:hover{
+		background: #888;
+	    }
+	}
+    }
+}
+
+#header{
+    background: @background;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    min-height: 56px;
+    z-index: 100;
+    border-bottom: @background solid 2px;
+}
+
+#header .border-bottom{
+    border-bottom: @mainColor solid 4px;
+}
+
+#header h1{
+    font-family: NunitoLight, Helvetica;
+    font-weight: normal;
+    margin: 5px 8px 0px 8px;
+    color: #DDD;
+    float: left;
+    
+}
+
+#header #nav-menu{
+    float: right;
+}
+
+#header a, #header a:visited,
+#nav-cols a, #nav-cols a:visited {
+    color: white; text-decoration: none;
+}
+
+a, a:visited { color: black; text-decoration: none; }
+
+#header #nav-menu ul {}
+#header #nav-menu ul li { float: left; color: #DDD; margin: 25px 8px 0px 8px;}
+#header #nav-menu ul li a, #header #nav-menu ul li a:visited { font-family: NunitoLight, Helvetica; }
+#header #nav-menu ul li a.selected { color: @mainColor; font-weight: bold; }
+
+#content{
+    float: left;
+    width: auto;
+    overflow: auto;
+    width: 100%;
+    margin-top: 60px;
+    color: black;
+}
+
+#content #nav-cols{
+    background: @background + #111;
+    width: 180px;
+    position: absolute;
+    overflow: auto;
+    top: 60px;
+    bottom: 0px;
+    .shadow-box(@shadow, 2px, 0, 2px, 2px);
+}
+
+#content #nav-cols ul { padding-left: 8px;}
+
+#content #nav-cols ul li { color: #DDD; font-family: NunitoLight, Helvetica; width: 100%; border-bottom: solid 1px @background + #1C1C1C; font-size: 0.9em; padding: 2px 0px 4px 0px;}
+#content #nav-cols ul li.title { text-transform: uppercase; padding-top: 20px; padding-bottom: 14px; font-size: 1.1em;}
+#content #nav-cols ul li.title:first-child { padding-top: 10px; }
+
+#nav-cols + #page-content{
+    margin-left: 180px;
+}
+
+#content #nav-cols-2 {
+    width: 350px;
+    border-right: solid 1px #888;
+    position: absolute;
+    overflow: auto;
+    bottom: 0px;
+    top: 60px;
+    font-family: NunitoLight, Helvetica;
+    .shadow-box(@shadow, 2px, 0, 2px, 2px);
+    ul { 
+	li  {
+	    border-bottom: 1px solid #AAA;
+	    padding: 3px 4px 3px 4px;
+	    margin-left: 8px;
+	}	
+	li:first-child{
+	    border-top: 1px solid #AAA;
+	}
+	li.selected{
+	    color: @mainColor;
+	    font-weight: bold;
+	    a {
+		color: @mainColor;
+	    }
+	}
+    }
+    h3{
+	text-transform: uppercase;
+	font-size: 0.9em;
+	padding: 10px 6px 12px 12px;
+	color: #888;
+    }
+    h5{
+	font-size: 1.1em;
+	padding: 3px 0 5px 0;
+    }
+    h6{
+	font-size: 1em; 
+	margin: -5px 0 0 25px; 
+	color: @mainColor;
+    }
+    .reduce{
+	float: right;
+	color: @background;
+	border-top: solid 1px @background;
+	border-left: solid 1px @background;
+	border-bottom: solid 1px @background;
+	font-size: 0.8em;
+	padding: 0px;
+	margin: 4px 0px 4px 4px;
+	.border-radius-left(6px);
+	opacity: 0.6;
+	p {
+	    margin: 0;
+	    padding: 0px 1px 0px 4px;
+	}
+	&:hover{
+	    opacity: 1;
+	}
+    }
+}
+
+#nav-cols-2 + #nav-cols-content {
+    padding: 8px 5px 10px 14px;
+    left: 350px + 180px;
+}
+
+#nav-cols-content {
+    position: absolute;
+    overflow: auto;
+    top: 60px;
+    bottom: 0px;
+    right: 0px;
+    left: 200px;
+    padding-bottom: 40px;
+    h2{
+	margin: 10px 8px 4px 8px;
+	font-size: 2em;
+    }
+    h3 {
+	background: #DEDEDE;
+	font-size: 1em;
+	text-transform: uppercase;
+	margin: 15px 0px 10px 0px;
+	padding: 4px 10px 2px 15px;
+	.border-radius-left(6px);
+	clear: both;
+    }
+    h4 {
+	margin: 20px 0px;
+    }
+}
+
+#flatpage-title,
+#flatpage-content,
+div.flatpage-content {
+    padding: 8px 5px 10px 14px;
+}
+#flatpage-content { padding-bottom: 40px;}
+
+#flatpage-title.cols-2,
+#flatpage-content.cols-2 {
+    margin-left: 350px;
+}
+
+#flatpage-content a { font-weight: bold; }
+#flatpage-content a:hover { text-decoration: underline; }
+#flatpage-content li {
+    margin-left: 25px;
+    list-style-type: disc;
+}
+
+div.flatpage-content { padding: 20px 20px; }
+
+#active-tournament {
+    position: absolute;
+    top : 25px;
+    left: 50%;
+    a.selected {
+	color: @mainColor;
+	font-weight: bold;
+    }
+}
+
+
+div.members-list {
+    .member {
+	min-width: 200px;
+	min-height: 200px;
+	float: left;
+	margin: 10px;
+	padding: 15px;
+	.border-radius(20px);
+	background: lightgray;
+	p, h4 { text-align: center; }
+	img {
+	    max-width: 180px;
+	    margin:10px 0px;
+	    .border-radius(20px);
+	}
+	p.actions{
+	    margin-top: 10px;
+	}
+    }
+}
+
+#teams-group-edition{
+    #teams-group{
+	.placeholder{
+	    width: 230px;
+	    height: 70px;
+	    float: left;
+	    margin: 10px;
+	    .border-radius(20px);
+	    border: 2px white solid;
+	    &.droppable{
+		border: red 2px dashed !important;
+	    }
+	    &.empty{
+		border: lightgray 2px dashed;
+	    }
+	}
+    }
+    #teams-available-list{
+	float: right;
+	width: 40%;
+    }
+    .team{
+	width: 200px;
+	height: 40px;
+	.border-radius(20px);
+	padding: 15px;
+	.name{
+	    font-weight: bold;
+	    text-align: center;
+	}
+	&.available{
+	    background: lightgreen;
+	    border: green 1px solid;
+	}
+	&.organized{
+	    background: lightgray;
+	}
+    }
+}
+
+
+.board-games{
+    border: 1px solid black;
+    .border-radius(20px);
+    .shadow-box(@shadow, 3px, 3px, 3px, 3px);
+    width: 90%;
+    margin: 20px auto;
+    table {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	tr {
+	    height: 50px;
+	}
+
+	th, td {
+	    border-bottom: 1px solid black;
+	    border-right: 1px solid black;
+	    margin: 10px 0px;
+	    vertical-align: middle;
+	    
+	    &.first-col{
+		width: 20%;
+	    }
+	    &.team-col{
+		width: 30%;
+	    }
+	}
+	
+	tr:last-child td {
+	    border-bottom: none;
+	}
+	
+	td:last-child, th:last-child {
+	    border-right: none;
+	}
+    }
+}
+
+#scoring-boards{
+    .scoring-board-ctn{
+	margin: 40px 0px;
+    }
+    .scoring-board{
+	float: left;
+	border: 1px solid black;
+	.border-radius(20px);
+	.shadow-box(@shadow, 3px, 3px, 3px, 3px);
+	width: 85%;
+	table{
+	    width: 100%;
+	    text-align: center;
+	    th, td {
+		position: relative;
+		border-bottom: 1px solid black;
+		border-right: 1px solid black;
+		margin: 10px 0px;
+		vertical-align: middle;
+		&.hammer{
+		    width: 5%;
+		}
+	    }
+	    th:first-child{
+		width: 30%;
+	    }
+	    tr:last-child th, tr:last-child td{
+		border-bottom: none;
+	    }
+	    td:last-child, th:last-child {
+		border-right: none;
+		width: 15%;
+	    }
+	    tr {
+		height: 40px;
+      	    }
+	}
+	a{
+	    display: block;
+	    width: 12px;
+	    height: 12px;
+	    margin: 15px 10px;
+	    &.score-sub {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url('icon/icon-remove.png');
+		&:hover{
+		    background: url('icon/icon-remove-hover.png');
+		}
+	    }
+	    &.score-add {
+		position: absolute;
+		right: 0;
+		top: 0;
+		background: url('icon/icon-add.png');
+		&:hover{
+		    background: url('icon/icon-add-hover.png');
+		}
+	    }
+	}
+    }
+    .actions{
+	float: right;
+	width: 10%;
+
+	li{
+	    margin-top: 15px;
+	    a{
+		color: white;
+		padding: 5px;
+		height: 40px;
+		background: gray;
+		.border-radius(20px);
+	    }
+	}
+    }
+}
+
+ul {
+    &.messages {
+	width: 80%;
+	margin: 20px auto;
+	text-align: center;
+	li {
+	    padding: 10px;
+	    .border-radius(10px);
+
+	    &.info {
+		color: white;
+		background: #ffc85d;
+		border: orange 1px solid;
+	    }
+
+	    &.error {
+		color: white;
+		background: #FF9999;
+		border: red 1px solid;
+	    }
+	}
+    }
+}
+
+
+form {
+    div{
+	&.formset-item {
+	    margin-bottom: 40px;
+	}
+    }
+}
+
+ul.messages{
+    li.success {
+	border: 2px solid green;
+	background-color: #F8D389;
+	color: green;
+    }
+    li.warning {
+	border: 2px solid orange;
+	background-color: #F8D389;
+	color: orange;
+    }
+    li.error {
+	border: 2px solid red;
+	background-color: #F8D389;
+	color: red;
+    }
+    li.info {
+	border: 2px solid blue;
+	background-color: #F8D389;
+	color: blue;
+    }
+}
+
+/**********************
+ * Class de Test
+ **********************/
+
+.yellow { background: yellow !important; }
+.pink { background: pink !important; }

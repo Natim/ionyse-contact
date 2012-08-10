@@ -1,0 +1,23 @@
+{% extends "base_dashboard.html" %}
+{% load i18n %}
+
+{% block title-content %}{% blocktrans %}Delete a {{ verbose_name }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<div id="nav-cols-content">
+  <h2>{% blocktrans %}Delete a {{ verbose_name }}{% endblocktrans %}</h2>
+  <div class="confirm">	
+    <p>{% blocktrans %}Are you sure to delete the following {{ verbose_name }} ?{% endblocktrans %}</p>
+    <ul>
+      <li>{{ object }}</li>
+    </ul>
+    <form method="post" action=".">
+      {% csrf_token %}
+      <input type="button"
+	     value="{% trans "Cancel" %}"
+	     onclick="window.location.href='{% if object %}{{ object.get_absolute_url }}{% else %}{% url dashboard %}{% endif %}';" />
+      <input type="submit" value="{% trans "Delete" %}" />
+    </form>
+  </div>
+</div>
+{% endblock %}

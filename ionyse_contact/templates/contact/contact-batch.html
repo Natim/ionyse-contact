@@ -1,0 +1,17 @@
+{% extends 'model_detail.html' %}
+{% load i18n %}
+
+{% block content-title %}{% blocktrans with object as group %}Add some contact to {{ group }}{% endblocktrans %}{% endblock %}
+
+{% block object-actions %}
+{% endblock %}
+
+{% block extra-content %}
+<form action="." method="post">{% csrf_token %}
+  <p><textarea name="emails"></textarea></p>
+  <div class="buttons">
+	<input type="button" onclick="window.location.href='{{ object.get_absolute_url }}';" value="{% trans "Cancel" %}" />
+	<input id="submit-btn" type="submit" value="{% trans 'Add' %}" />
+  </div>
+</form>
+{% endblock %}

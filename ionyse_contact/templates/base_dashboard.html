@@ -1,0 +1,7 @@
+{% extends 'index.html' %}
+{% load i18n sekizai_tags %}
+
+{% block title %}{% blocktrans %}Dashboard - {{ app_label }}{% endblocktrans %}{% endblock title %}
+{% block content-title %}{% blocktrans %}Dashboard {{ app_label }}{% endblocktrans %}{% endblock %}
+
+{% block items-sub-menu %}{% include app_menu_file %}{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% if flatpage.title %}
+{{ flatpage.title }}
+{% else %}
+{% trans "Dashboard" %}
+{% endif %}
+{% endblock %}
+
+{% block items-sub-menu %}{% endblock %}
+{% block content-class %}{% endblock %}
+
+{% block content %}
+<div class="flatpage-content">
+  <p>{% blocktrans %}Hi <em>{{ user}}</em>, and welcome to <strong>Ionyse Contact</strong> !{% endblocktrans %}</p>
+</div>
+{% endblock content %}

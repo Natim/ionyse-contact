@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Log-in" %}{% endblock %}
+
+
+{% block content-footer %}
+<div class="flatpage-content">
+
+<h2>{% trans "Connexion" %}</h2>
+
+<form action="." method="post">
+  {% csrf_token %}
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+
+  {% endif %}
+
+  {{ form.as_p }}
+
+  <div class="buttons">
+    {#<input type="button" value="{% trans 'Cancel' %}" onclick="history.go(-1);" /> -#}
+    <input type="submit" value="{% trans "Log in" %}" /></div>
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load i18n %}
+<ul>
+  <li class="title">{% trans "Groups" %}</li>
+  <li><a href="{% url group-list %}">{% trans "List of groups" %}</a></li>
+  <li><a href="{% url group-add %}">{% trans "Add a group" %}</a></li>
+
+  <li class="title">{% trans "Contacts" %}</li>
+  <li><a href="{% url contact-list %}">{% trans "List of contacts" %}</a></li>
+  <li><a href="{% url contact-add %}">{% trans "Add a contact" %}</a></li>
+</ul>

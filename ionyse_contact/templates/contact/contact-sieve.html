@@ -1,0 +1,19 @@
+{% extends 'model_detail.html' %}
+{% load i18n %}
+
+{% block content-title %}{% blocktrans with object as group %}Sieve script for {{ group }}{% endblocktrans %}{% endblock %}
+
+{% block object-actions %}
+{% endblock %}
+
+{% block extra-content %}
+<form action="." method="post">{% csrf_token %}
+  <p><textarea name="filter_sieve">{{ filter_sieve }}</textarea></p>
+  <div class="buttons">
+	<input type="button" onclick="window.location.href='{{ object.get_absolute_url }}';" value="{% trans "Cancel" %}" />
+	{% if object.always_data_id %}
+	<input id="submit-btn" type="submit" value="{% trans 'Setup on AlwaysData' %}" />
+	{% endif %}
+  </div>
+</form>
+{% endblock %}

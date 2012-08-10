@@ -1,0 +1,26 @@
+{% extends 'base_dashboard.html' %}
+{% load i18n %}
+
+{% block content-title %}
+{% if object %}
+{% blocktrans %}Edition of {{ object }}{% endblocktrans %}
+{% else %}
+{% blocktrans %}Creation of a {{ verbose_name }}{% endblocktrans %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="nav-cols-content">
+  
+  {% if object %}
+  <h2>{% blocktrans%}Edition of {{ object }}{% endblocktrans %}</h2>
+  {% else %}
+  <h2>{% blocktrans %}Creation of a {{ verbose_name }}{% endblocktrans %}</h2>
+  {% endif %}
+
+  {% block edit_form %}
+  {% include 'edit_form.html' %}
+  {% endblock %}
+
+</div>
+{% endblock %}

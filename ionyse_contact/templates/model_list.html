@@ -1,0 +1,35 @@
+{% extends "base_dashboard.html" %}
+{% load i18n %}
+
+{% block content-title %}{% blocktrans %}List of {{ verbose_name }}{% endblocktrans %}{% endblock %}
+
+{% block list-panel %}
+<div id="nav-cols-2">
+  <div class="content-col">
+    <h3>{% blocktrans %}List of {{ verbose_name_plural }}{% endblocktrans %}</h3>
+    {% if object_list %}
+    <ul>
+      {% for obj in object_list %}
+      <li {% if obj == object %}class="selected"{% endif %}><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>{% blocktrans %}No {{ verbose_name }} available.{% endblocktrans %}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="nav-cols-content">
+  <h2>{{ object_list|length }} {{ verbose_name_plural }}</h2>
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}  
+</div>
+{% endblock %}

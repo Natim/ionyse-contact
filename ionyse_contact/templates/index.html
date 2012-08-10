@@ -1,0 +1,109 @@
+{% load sekizai_tags i18n %}
+<html>
+  <head>
+    <title>{% block title %}{% if flatpage.title %}{{ flatpage.title }}{% endif %}{% endblock %} - Ionyse Contact</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    {#  RESSOURCES CSS  #}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" type="text/css" media="all" />
+    <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}css/styles.less"/>
+    {% render_block "css" %}
+    {# ---------------- #}
+
+    {#  RESSOURCES jS  #}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/less-1.1.3.min.js"></script>
+    {% render_block "js" %}
+    {# --------------- #}
+    
+  </head>
+  <body>
+    
+    <div id="container">
+
+      <div id="header">
+
+	<div class="border-bottom">
+
+	  <h1><a id="dashboard-menu" href="/">Ionyse<span class="large">Contacts</span></a></h1>
+
+
+	  {% if active_tournament %}
+	  <div id="active-tournament"><a href="{% url tournament-dashboard active_tournament.pk %}"{% if active_tournament == tournament %} class="selected"{% endif %}>{{ active_tournament }}</a></div>
+	  {% endif %}
+
+	  <div id="nav-menu">
+
+	    <nav>
+	      <ul>
+		{% if user.is_authenticated %}
+		<li><a href="{% url contact-dashboard %}"
+		       {% if app_label == "contact" %} class="selected"{% endif %}>{% trans "Contacts" %}</a></li>
+		{% if user.is_staff %}
+		<li><a id="admin-menu" href="/" {% block "nav-menu-admin" %}{% endblock %}>{% trans "Administration" %}</a></li>
+		{% endif %}
+		<li ><a id="logout-menu" href="/accounts/logout/">{% trans "Logout" %}</a></li>
+		
+		{% else %}
+		<li><a href="#">{% trans "Tour" %}</a></li>
+		<li><a href="/">{% trans "Login" %}</a></li>
+
+		{% endif %}
+
+
+		{% block main-menu %}{% endblock %}
+
+	      </ul>
+	    </nav>
+	  </div>
+	  <div style="clear: both;"></div>
+	  
+	</div>
+
+      </div>
+      
+      <div id="content">
+	
+	{% block sub-menu %}
+	<div id="nav-cols">
+	  {% block items-sub-menu %}
+	  {% endblock %}
+	</div>
+	{% endblock %}
+	
+	<div id="page-content" class="{% block content-class %}whit-menu{% endblock %}">
+	  
+	  {# Bandeau de navigation des listes #}
+	  {% block list-panel %}{% endblock %}
+
+	  {% if flatpage.title %}
+	  <div id="flatpage-title" {% if flatpage.css %}class="{{ flatpage.css }}"{% endif %}>
+	    <h1>{{ flatpage.title }}</h1>
+	  </div>
+	  {% endif %}
+
+	  {# Block de contenu réel #}
+	  {% block content %}{% endblock %}
+
+	  {# Contenu de la Flatpage #}
+	  {% if flatpage.content %}
+	  <div id="flatpage-content" {% if flatpage.css %}class="{{ flatpage.css }}"{% endif %}>
+	    {{ flatpage.content|safe }}
+	  </div>
+	  {% endif %}
+
+	  {# Block de contenu réel positionné après la flatpage. #}
+	  {% block content-footer %}{% endblock %}
+
+	</div>
+
+      </div>
+
+    </div>
+
+    <div id="footer"></div>
+    
+  </body>
+
+</html>
